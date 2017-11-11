@@ -1,0 +1,104 @@
+<div class="row">
+    <div class="col-md-offset-4 column_box  hidden-xs">
+        <h1>都美dreamer-分类管理</h1>
+    </div>
+</div>
+<div style="padding: 10px 0; color: #ccc"></div>
+<div class="row" style="position: relative; z-index: 19999">
+    <div class="col-md-3">
+        <select id="yjfl" class="wide small">
+            <option data-display="一级分类">一级分类</option>
+            <option value="1">Some option</option>
+            <option value="2">Another option</option>
+            <option value="3" disabled>A disabled option</option>
+            <option value="4">Potato</option>
+        </select>
+    </div>
+
+    <div class="col-md-3">
+        <select id="ejfl" class="wide small">
+            <option data-display="二级分类">二级分类</option>
+            <option value="1">Some option</option>
+            <option value="2">Another option</option>
+            <option value="3" disabled>A disabled option</option>
+            <option value="4">Potato</option>
+        </select>
+    </div>
+
+    <div class="col-md-3">
+        <select id="sjfl" class="wide small">
+            <option data-display="三级分类">三级分类</option>
+            <option value="1">Some option</option>
+            <option value="2">Another option</option>
+            <option value="3" disabled>A disabled option</option>
+            <option value="4">Potato</option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <div class="input-group">
+            <div class="col-md-6">
+                <button type="button" class="btn btn-info">搜索</button>
+            </div>
+            <div class="col-md-6">
+                <button type="button" class="btn btn-success">添加</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="padding: 10px 0; color: #ccc"></div>
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Table heading</th>
+                    <th>Table heading</th>
+                    <th>Table heading</th>
+                    <th>Table heading</th>
+                    <th>Table heading</th>
+                    <th>Table heading</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="/static/js/jquery.nice-select.min.js"></script>
+
+<script type="text/javascript">
+    $("#yjfl").niceSelect();
+    $("#ejfl").niceSelect();
+    $("#sjfl").niceSelect();  
+</script>

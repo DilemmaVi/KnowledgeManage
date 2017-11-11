@@ -1,0 +1,167 @@
+<div class="super_content">
+    <div id="showHomeMessageId" class="new-userMessage"></div>
+</div>
+<div class="containerbox">
+    <div class="container">
+        <div class="col-md-10">
+            <div class="panel panel-default">
+                <div class="panel-body ke-content">
+
+
+
+                    <!-- 展示知识内容 -->
+                    <div class="row">
+                        <div class="col-md-12">
+
+
+
+
+
+                            <!-- 如果是内容类型等于4小组首页，则在此处不提供任何操作功能 -->
+
+
+                            <div style="padding: 2px;" class="visible-lg visible-md">
+
+
+                                <button type="button" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-star"></span>&nbsp;点击修改知识
+                                </button>
+
+
+                                <div class="doc_title">kindeditor编辑器设置代码过滤方法</div>
+                                <div class="doc-conentinfo">
+                                    2017年10月19日
+                                    <b>发布在分类</b>
+
+                                    /
+                                    <a href="webtype/view402888304e2d75fe014e3d72e891000c/Pub1.html" title="编程">编程</a>
+
+                                    /
+                                    <a href="webtype/view8a2831b35239b14301523f411c74005c/Pub1.html" title="web前端">web前端</a>
+
+                                    /
+                                    <a href="webtype/view8a2831b35f0c0d75015f323e7a5c00e4/Pub1.html" title="超文本编辑器">超文本编辑器</a>
+
+                                    <b>下,并于</b>
+                                    2017年10月19日
+                                    <b>编辑</b>
+                                </div>
+                                <hr>
+
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-12" id="docContentsId">
+                                <div id="wrapper">
+                                    <div id="header">
+                                        <div id="main_container">
+                                            <div id="main_content">
+                                                <div id="content">
+                                                    <div id="post_detail">
+                                                        <div class="post">
+                                                            <a name="mark0"></a>
+                                                            <h2> kindeditor编辑器代码过滤解决方法. </h2>
+                                                            <div class="postbody">
+                                                                <div id="cnblogs_post_body">
+                                                                    <p>
+                                                                        很多朋友在使用Kindeditor编辑器的时候都会遇到这样一个问题，如：给A标签加上title属性过后，浏览的时候，却神奇般地发现title属性没有了。再次切换html源代码的时候，返现编辑器将title属性给删掉了。追究其根本原因主要是kindeditor设置了标签和属性的默认过滤机制。KindEditor默认状态下会过滤编辑器里的html代码，主要是为了生成干净的代码，就会出现我们想不到的结果，现在焦国强为大家讲解：如何避免自己手动添加的代码被不必要的过滤。
+                                                                        <br> 首先我们知道3.4版本以上版本默认开启了过滤模式（filterMode:true）。当filterMode为true时，编辑器会根据htmlTags设定自动过滤HTML代码。
+                                                                        <br> 可是在我们平时的使用中，为了精简内容代码和达到好特定的显示效果，经常会用一些div跟css的代码，如果不更改编辑器的设定，这些代码都会被过滤，所
+                                                                        以如果想保留所有HTML相关代码，请将kindeditor.js里的filterMode设置成false。如果想保留特定HTML，请将
+                                                                        filterMode设置成true后，配置htmlTags属性。 </p>
+                                                                    <p>
+                                                                        <strong>
+                                                                            <span style="color: rgb(229,51,51);">filterMode : true // true:开启过滤模式, false:关闭过滤模式</span>
+                                                                        </strong>
+                                                                    </p>
+                                                                    <p> 如果改成filterMode : false之后，编辑器里面添加的代码就都会被保留。 </p>
+                                                                    <p>
+                                                                        可是如果我只是想不过滤某个标签，其他的还是正常过滤，应该怎么办呢？比如说我想保留行距代码</p>
+                                                                    <p>
+                                                                        <span style="color: rgb(51,127,229);">原文连接：http://www.jiaoguoqiang.com/kindeditorguolv/</span>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <script type="text/javascript">
+                            $(function () {
+                                //分类
+                                $('.typetagsearch').bind('click', function () {
+                                    luceneSearch('TYPE:' + $(this).attr('title'));
+                                });
+                                //作者
+                                $('.authortagsearch').bind('click', function () {
+                                    luceneSearch('AUTHOR:' + $(this).attr('title'));
+                                });
+                            });
+                        </script>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+
+
+
+
+
+
+
+
+                                <a name="markdocTag"></a>
+                                <br>
+                                <div class="row doc_column_box">
+                                    <div class="col-sm-12">
+                                        <span class="glyphicon glyphicon-tags   column_title">&nbsp;关键字</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <hr class="hr_split">
+
+                                        <span class="label label-info tagsearch" style="cursor: pointer;" title="过滤">过滤</span>
+
+                                        <span class="label label-info tagsearch" style="cursor: pointer;" title="属性">属性</span>
+
+                                        <span class="label label-info tagsearch" style="cursor: pointer;" title="代码">代码</span>
+
+                                        <span class="label label-info tagsearch" style="cursor: pointer;" title="编辑">编辑</span>
+
+                                        <span class="label label-info tagsearch" style="cursor: pointer;" title="编辑器">编辑器</span>
+
+                                        <span class="label label-info tagsearch" style="cursor: pointer;" title="kindeditor">kindeditor</span>
+
+                                        <span class="label label-info tagsearch" style="cursor: pointer;" title="标签">标签</span>
+
+                                        <span class="label label-info tagsearch" style="cursor: pointer;" title="filtermode">filtermode</span>
+
+                                        <span class="label label-info tagsearch" style="cursor: pointer;" title="保留">保留</span>
+
+                                        <span class="label label-info tagsearch" style="cursor: pointer;" title="如果">如果</span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

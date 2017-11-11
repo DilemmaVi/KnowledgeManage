@@ -1,0 +1,80 @@
+<div style="padding: 40px 0; color: #ccc">
+</div>
+<div class="row">
+    <div class="col-md-offset-4 column_box  hidden-xs">
+        <h1>都美dreamer-知识创建</h1>
+    </div>
+</div>
+<div style="padding: 10px 0; color: #ccc"></div>
+<div class="row" >
+    <div class="col-md-4">
+        <select id="yjfl" class="wide small">
+            <option data-display="一级分类">一级分类</option>
+            <option >Some option</option>
+            <option >Another option</option>
+            <option >Potato</option>
+        </select>
+    </div>
+
+    <div class="col-md-4">
+        <select id="ejfl" class="wide small">
+            <option data-display="二级分类">二级分类</option>
+            <option >Some option</option>
+            <option >Another option</option>
+            <option >Potato</option>
+        </select>
+    </div>
+
+    <div class="col-md-4">
+        <select id="sjfl" class="wide small">
+            <option data-display="三级分类">三级分类</option>
+            <option >Some option</option>
+            <option >Another option</option>
+            <option >Potato</option>
+        </select>
+    </div>
+</div>
+<div style="padding: 5px 0; color: #ccc"></div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">标题</span>
+            <input type="text" id="Title" class="form-control" placeholder="标题" aria-describedby="basic-addon1">
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon2">关键字</span>
+            <input type="text" id="Keyword" class="form-control" placeholder="多个关键字使用英文逗号分割" aria-describedby="basic-addon2">
+        </div>
+    </div>
+</div>
+
+<div style="padding: 5px 0; color: #ccc"></div>
+
+<div id="editor" style="min-height:300px"></div>
+
+<div style="padding: 5px 0; color: #ccc"></div>
+
+<div class="row">
+    <div class="col-md-offset-3 column_box  hidden-xs">
+        <div class="col-md-6">
+            <a class="btn btn-primary btn-lg"  role="button" id="input-data">提交知识</a>
+        </div>
+        <div class="col-md-6">
+            <a class="btn btn-info btn-lg" role="button" id="preview-data">预览知识</a>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="/static/js/jquery.nice-select.min.js"></script>
+
+<script type="text/javascript">
+    $("#yjfl").niceSelect();
+    $("#ejfl").niceSelect();
+    $("#sjfl").niceSelect();  
+</script>
+<script type="text/javascript" src="/static/js/wangEditor.min.js"></script>
+<script type="text/javascript" src="/static/js/create.js"></script>

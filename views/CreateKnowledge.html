@@ -9,28 +9,22 @@
 <div class="row" >
     <div class="col-md-4">
         <select id="yjfl" class="wide small">
-            <option data-display="一级分类">一级分类</option>
-            <option >Some option</option>
-            <option >Another option</option>
-            <option >Potato</option>
+                <option >一级分类</option>
+            {{range $index, $elem := .yjfl}}
+            <option >{{$elem}}</option>
+            {{end}}
         </select>
     </div>
 
     <div class="col-md-4">
         <select id="ejfl" class="wide small">
-            <option data-display="二级分类">二级分类</option>
-            <option >Some option</option>
-            <option >Another option</option>
-            <option >Potato</option>
+            <option >二级分类</option>
         </select>
     </div>
 
     <div class="col-md-4">
         <select id="sjfl" class="wide small">
-            <option data-display="三级分类">三级分类</option>
-            <option >Some option</option>
-            <option >Another option</option>
-            <option >Potato</option>
+            <option >三级分类</option>
         </select>
     </div>
 </div>
@@ -77,4 +71,4 @@
     $("#sjfl").niceSelect();  
 </script>
 <script type="text/javascript" src="/static/js/wangEditor.min.js"></script>
-<script type="text/javascript" src="/static/js/create.js"></script>
+<script type="text/javascript" src="/static/js/create/create.js"></script>

@@ -27,10 +27,36 @@ func (c *CreateController) Prepare() {
 
 //Get 知识创建页面
 func (c *CreateController) Get() {
+	yjfl, _, err := models.NewClassify().FindByClassify("", -1)
+	if err == nil {
+		c.Data["yjfl"] = yjfl
+	} else {
+		c.Data["yjfl"] = ""
+	}
 	c.Prepare()
 	c.Data["title"] = "知识创建"
 	c.Layout = "index.tpl"
 	c.TplName = "CreateKnowledge.html"
+}
+
+//FindClassify 通过上级分类查询下级分类
+func (c *CreateController) FindClassify() {
+	jsonresult := make(map[string]interface{}, 2)
+	classify := strings.TrimSpace(c.GetString("classify"))
+	rank, _ := c.GetInt("rank", 0)
+
+	result, _, err := models.NewClassify().FindByClassify(classify, rank)
+	if err == nil {
+		jsonresult["msg"] = "ok"
+		jsonresult["data"] = result
+	} else {
+		jsonresult["msg"] = err.Error()
+		jsonresult["data"] = ""
+	}
+	c.Data["json"] = jsonresult
+	c.ServeJSON()
+	return
+
 }
 
 //PageLoadJson 获取分页知识

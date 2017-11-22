@@ -1,39 +1,25 @@
 package test
 
 import (
-	"net/http"
-	"net/http/httptest"
+	"KnowledgeManage/models"
+	"fmt"
 	"testing"
-	"runtime"
-	"path/filepath"
-	_ "KnowledgeManage/routers"
 
-	"github.com/astaxie/beego"
-	. "github.com/smartystreets/goconvey/convey"
+	"github.com/astaxie/beego/orm"
+	_ "github.com/mattn/go-sqlite3"
 )
 
-func init() {
-	_, file, _, _ := runtime.Caller(1)
-	apppath, _ := filepath.Abs(filepath.Dir(filepath.Join(file, ".." + string(filepath.Separator))))
-	beego.TestBeegoInit(apppath)
+func Register() {
+	orm.RegisterDriver("sqlite3", orm.DRSqlite)
+	orm.RegisterDataBase("default", "sqlite3", "data.db")
+	orm.RegisterModel(new(models.Knowledgedata))
+	orm.RegisterModel(new(models.Member))
+	orm.RegisterModel(new(models.Classifydata))
 }
 
-
-// TestBeego is a sample to run an endpoint test
-func TestBeego(t *testing.T) {
-	r, _ := http.NewRequest("GET", "/", nil)
-	w := httptest.NewRecorder()
-	beego.BeeApp.Handlers.ServeHTTP(w, r)
-
-	beego.Trace("testing", "TestBeego", "Code[%d]\n%s", w.Code, w.Body.String())
-
-	Convey("Subject: Test Station Endpoint\n", t, func() {
-	        Convey("Status Code Should Be 200", func() {
-	                So(w.Code, ShouldEqual, 200)
-	        })
-	        Convey("The Result Should Not Be Empty", func() {
-	                So(w.Body.Len(), ShouldBeGreaterThan, 0)
-	        })
-	})
+func Test_FindByClassify(t *testing.T) {
+	Register()
+	classify := models.NewClassify()
+	data, _, _ := classify.FindByClassify("测试一级", -1)
+	fmt.Println(data)
 }
-

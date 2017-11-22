@@ -23,6 +23,7 @@ func init() {
 	beego.Router("/CreateKnowledge/add", &controllers.CreateController{}, "post:CreateKnowledge")
 	beego.Router("/CreateKnowledge/delete", &controllers.CreateController{}, "post:DeleteKnowledge")
 	beego.Router("/CreateKnowledge/edit", &controllers.CreateController{}, "post:EditKnowledge")
+	beego.Router("/CreateKnowledge/find", &controllers.CreateController{}, "post:FindClassify")
 
 	beego.Router("/BackupData", &controllers.BackupController{})
 	beego.Router("/content", &controllers.ContentController{})

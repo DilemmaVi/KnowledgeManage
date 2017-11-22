@@ -23,7 +23,7 @@ type Knowledgedata struct {
 
 // TableName 获取对应数据库表名.
 func (data *Knowledgedata) TableName() string {
-	return "Knowledgedata"
+	return "knowledgedata"
 }
 
 func NewKnowledge() *Knowledgedata {

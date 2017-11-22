@@ -64,6 +64,32 @@ func (data *Classifydata) Find(id int) (*Classifydata, error) {
 	return data, nil
 }
 
+//FindByClassify 根据某一分类查找下一级分类
+func (data *Classifydata) FindByClassify(classify string, rank int) (orm.ParamsList, int64, error) {
+	o := orm.NewOrm()
+	var col string
+	var resultcol string
+	var classfiys orm.ParamsList
+	if rank == -1 {
+		col = "yjfl"
+		resultcol = "yjfl"
+	} else if rank == 0 {
+		col = "yjfl"
+		resultcol = "ejfl"
+
+	} else {
+		col = "ejfl"
+		resultcol = "sjfl"
+	}
+	if rank == -1 {
+		num, err := o.QueryTable(data.TableName()).GroupBy(resultcol).ValuesFlat(&classfiys, resultcol)
+		return classfiys, num, err
+	}
+	num, err := o.QueryTable(data.TableName()).Filter(col, classify).GroupBy(resultcol).ValuesFlat(&classfiys, resultcol)
+	return classfiys, num, err
+
+}
+
 //FindByConditions 根据一级分类、二级分类、三级分类查找分类信息.
 func (data *Classifydata) FindByConditions(pageIndex int, pageSize int, conditions map[string]string) ([]*Classifydata, int64, error) {
 	o := orm.NewOrm()

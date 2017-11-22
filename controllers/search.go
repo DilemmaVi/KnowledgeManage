@@ -1,14 +1,11 @@
 package controllers
 
-import (
-	"github.com/astaxie/beego"
-)
-
 type SearchController struct {
-	beego.Controller
+	BaseController
 }
 
 func (c *SearchController) Get() {
+	c.Prepare()
 	c.Data["title"] = "检索"
 	c.Layout = "index.tpl"
 	c.TplName = "search.html"

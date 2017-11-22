@@ -19,7 +19,14 @@
     <script type="text/javascript" src="/static/js/wcpTypes.js"></script>
     <link href="/static/css/nice-select.css" rel="stylesheet">
     <link href="/static/css/sweetalert2.min.css" rel="stylesheet">
-     <script type="text/javascript" src="/static/js/sweetalert2.min.js"></script>
+    <script type="text/javascript" src="/static/js/sweetalert2.min.js"></script>
+
+    <link href="/static/css/bootstrap-table/bootstrap-table.css" rel="stylesheet">
+    <script type="text/javascript" src="/static/css/bootstrap-table/bootstrap-table.js"></script>
+    <script type="text/javascript" src="/static/css/bootstrap-table/bootstrap-table-zh-CN.min.js"></script>
+
+
+
 
 
 </head>
@@ -67,7 +74,7 @@
                             <span class="glyphicon glyphicon-list-alt"></span> 备份知识 </a>
                     </li>
                                         <li class="hidden-xs hidden-sm hidden-md">
-                        <a href="/BackupData">
+                        <a href="/manage">
                             <span class="glyphicon glyphicon-cog"></span> 管理后台 </a>
                     </li>
                 </ul>
@@ -75,8 +82,11 @@
    <ul class="nav navbar-nav navbar-right" style="margin-right: 10px;">
 
     <!-- 登录注销 -->
-    
+        {{if eq .Member ""}}
         <li><a href="/login"><span class="glyphicon glyphicon glyphicon-user"></span> 登录</a></li>
+        {{else}}
+        <li><a href="/login"><span class="glyphicon glyphicon glyphicon-user"></span> {{.Member}}</a></li>
+        {{end}}
     
     
     
@@ -89,6 +99,7 @@
 
     <div class="containerbox">
         <div class="container">
+         <div style="margin-top: 30px;"></div>
             {{.LayoutContent}}
         </div>
     </div>

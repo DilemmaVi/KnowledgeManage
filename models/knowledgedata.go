@@ -1,6 +1,8 @@
 package models
 
 import (
+	"errors"
+
 	"github.com/astaxie/beego/orm"
 )
 
@@ -24,20 +26,68 @@ func (data *Knowledgedata) TableName() string {
 	return "Knowledgedata"
 }
 
-func (data *Knowledgedata) InsertOrUpdate() error {
-	o := orm.NewOrm()
-	o.Using("default") // 默认使用 default，你可以指定为其他数据库
-	if data.Id > 0 {
-		_, err := o.Update(data)
-		return err
-	} else {
-		_, err := o.Insert(data)
-		return err
-	}
-
+func NewKnowledge() *Knowledgedata {
+	return &Knowledgedata{}
 }
 
-//分页查找知识.
+// Add 添加一个知识.
+func (data *Knowledgedata) Add() error {
+	o := orm.NewOrm()
+
+	if c, err := o.QueryTable(data.TableName()).Filter("Title", data.Title).Count(); err == nil && c > 0 {
+		return errors.New("已存在此知识")
+	}
+
+	_, err := o.Insert(data)
+
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+// Update 更新知识信息.
+func (data *Knowledgedata) Update(cols ...string) error {
+	o := orm.NewOrm()
+
+	if _, err := o.Update(data, cols...); err != nil {
+		return err
+	}
+	return nil
+}
+
+//Find 通过id查找知识
+func (data *Knowledgedata) Find(id int) (*Knowledgedata, error) {
+	o := orm.NewOrm()
+
+	data.Id = id
+	if err := o.Read(data); err != nil {
+		return data, err
+	}
+	return data, nil
+}
+
+//FindByConditions 根据一级分类、二级分类、三级分类查找知识.
+func (data *Knowledgedata) FindByConditions(pageIndex int, pageSize int, conditions map[string]string) ([]*Knowledgedata, int64, error) {
+	o := orm.NewOrm()
+	QueryResult := o.QueryTable(data.TableName())
+	var knowledgedatas []*Knowledgedata
+	for condition := range conditions {
+		QueryResult = QueryResult.Filter(condition, conditions[condition])
+	}
+	totalCount, err := QueryResult.Count()
+	if err != nil {
+		return knowledgedatas, 0, err
+	}
+	_, err = QueryResult.All(&knowledgedatas)
+	if err != nil {
+		return knowledgedatas, 0, err
+	}
+
+	return knowledgedatas, totalCount, err
+}
+
+//FindToPager 分页查找知识.
 func (data *Knowledgedata) FindToPager(pageIndex, pageSize int) ([]*Knowledgedata, int64, error) {
 	o := orm.NewOrm()
 
@@ -60,7 +110,7 @@ func (data *Knowledgedata) FindToPager(pageIndex, pageSize int) ([]*Knowledgedat
 	return knowledgedatas, totalCount, nil
 }
 
-//删除一条知识.
+//Delete 删除一条知识.
 func (data *Knowledgedata) Delete(Id int) error {
 	o := orm.NewOrm()
 

@@ -1,14 +1,11 @@
 package controllers
 
-import (
-	"github.com/astaxie/beego"
-)
-
 type ListController struct {
-	beego.Controller
+	BaseController
 }
 
 func (c *ListController) Get() {
+	c.Prepare()
 	c.Data["title"] = "知识列表"
 	c.Layout = "index.tpl"
 	c.TplName = "list.html"

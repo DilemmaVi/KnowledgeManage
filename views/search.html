@@ -1,300 +1,243 @@
-			<div style="margin-top: 20px;"></div>
-			<div class="row column_box">
-				<div class="col-lg-3"></div>
-				<div class="col-lg-6">
-					<div class="row">
-						<div class="col-sm-12 column_box  hidden-xs">
-							<img class="center-block" src="http://www.wcpdoc.com:80/actionImg/PubHomelogo.do" alt="wcp" style="max-width: 200px;">
-						</div>
-						<div class="col-sm-12 column_box">
-							
+<div class="container ">
+    <div style="margin-top: 20px;"></div>
+    <div class="row column_box">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="col-sm-12 column_box  hidden-xs">
+                    <img class="center-block" src="http://www.wcpdoc.com:80/actionImg/PubHomelogo.do" alt="wcp" style="max-width: 200px;">
+                </div>
+                <div class="col-sm-12 column_box">
 
 
 
 
-<script src="text/lib/autocomplete/completer.min.js"></script>
-<link rel="stylesheet" href="text/lib/autocomplete/completer.css">
-<div class="row">
-	<div class="col-sm-12 ">
-		<form action="websearch/PubDo.do" id="websearchpubdoId" method="post">
-			<div class="input-group">
-				<input type="text" class="form-control" name="word" value="" id="searchInput" placeholder="请输入关键字..." autocomplete="off"> <span class="input-group-btn">
+
+                    <script src="/static/css/autocomplete/completer.min.js"></script>
+                    <link rel="stylesheet" href="/static/css/autocomplete/completer.css">
+                    <div class="row">
+                        <div class="col-sm-12 ">
+                            <form action="websearch/PubDo.do" id="websearchpubdoId" method="post">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="word" value="" id="searchInput" placeholder="请输入关键字..." autocomplete="off"> <span class="input-group-btn">
 					<button class="btn btn-info" type="submit">
 						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					</button> <!-- 专业版功能 -->
-						<a id="searchPlusButtonId" style="margin-left: 16px;">高级检索</a>
-					<script type="text/javascript">
-						$('#searchPlusButtonId').bind(
-								'click',
-								function() {
-									$('#websearchpubdoId').attr('action',
-											"websearch/PubPlus.do");
-									$('#websearchpubdoId').submit();
-								});
-					</script> <!-- 专业版功能 -->
+
 				</span>
-			</div>
-		</form>
-	</div>
-</div>
-<div class="row">
-	<div class="col-sm-12 ">
-		
-			<a class="hotWordsearch">
-				<span class="label label-danger" style="cursor: pointer;">office</span>
-			</a>
-		
-			<a class="hotWordsearch">
-				<span class="label label-danger" style="cursor: pointer;">开源权限</span>
-			</a>
-		
-			<a class="hotWordsearch">
-				<span class="label label-danger" style="cursor: pointer;">docx</span>
-			</a>
-		
-			<a class="hotWordsearch">
-				<span class="label label-danger" style="cursor: pointer;">win</span>
-			</a>
-		
-			<a class="hotWordsearch">
-				<span class="label label-danger" style="cursor: pointer;">WDA</span>
-			</a>
-		
-	</div>
-</div>
-<script type="text/javascript">
-	$(function() {
-		$('.hotWordsearch').bind('click', function() {
-			luceneSearch($(this).text());
-		});
-		$('#searchInput').AutoComplete({
-			'data' : "websearch/Pubsearch.do",
-			'width' : 'auto',
-			'ajaxType':'post',
-			'ajaxDataType' : 'json',
-			'onerror' : function(msg) {
-				alert(msg);
-			},
-			'maxHeight' : 200,
-			'itemHeight' : 30,
-	        'matchHandler': function(keyword, data) {
-	            return true; 
-	        }
-		});
-	});
-</script>
-						</div>
-					</div>
-					<div style="margin-top: 20px;"></div>
-				</div>
-				<div class="col-lg-3"></div>
-			</div>
-			<!-- /.row -->
-			<div class="row ">
-				<div class="col-sm-12">
-					<!--<--jsp:include page="commons/includeSearchTopDoc.jsp"><--/jsp:include>-->
-					
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 ">
+
+                            <a class="hotWordsearch">
+                                <span class="label label-danger" style="cursor: pointer;">office</span>
+                            </a>
+
+                            <a class="hotWordsearch">
+                                <span class="label label-danger" style="cursor: pointer;">开源权限</span>
+                            </a>
+
+                            <a class="hotWordsearch">
+                                <span class="label label-danger" style="cursor: pointer;">docx</span>
+                            </a>
+
+                            <a class="hotWordsearch">
+                                <span class="label label-danger" style="cursor: pointer;">win</span>
+                            </a>
+
+                            <a class="hotWordsearch">
+                                <span class="label label-danger" style="cursor: pointer;">WDA</span>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 20px;"></div>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+    <!-- /.row -->
+    <div class="row ">
+        <div class="col-sm-12">
+            <!--<--jsp:include page="commons/includeSearchTopDoc.jsp"><--/jsp:include>-->
 
 
-<div class="widget-box shadow-box" style="padding-bottom: 16px;">
-	<div class="title">
-		<h3>
-			<i class="glyphicon glyphicon-tree-conifer"></i> 知识分类
-		</h3>
-	</div>
-	<div class="stream-list p-stream">
-		
-			
-				<div class="col-sm-3 docTypeBox">
-					<h1>
-						<a href="webtype/view402881f14af310bc014af322996f0006/Pub1.html"> EKCP知识管理 </a>
-						
-							<span style="color: #D9534F; font-weight: bold; font-size: 13px;">
+
+            <div class="widget-box shadow-box" style="padding-bottom: 16px;">
+                <div class="title">
+                    <h3>
+                        <i class="glyphicon glyphicon-tree-conifer"></i> 知识分类
+                    </h3>
+                </div>
+                <div class="stream-list p-stream">
+
+
+                    <div class="col-sm-3 docTypeBox">
+                        <h1>
+                            <a href="webtype/view402881f14af310bc014af322996f0006/Pub1.html"> EKCP知识管理 </a>
+
+                            <span style="color: #D9534F; font-weight: bold; font-size: 13px;">
 									<span class=" glyphicon glyphicon-bookmark"></span>&nbsp;46&nbsp;
-									
+
 										<span class="glyphicon glyphicon-question-sign"></span>&nbsp;5&nbsp;
-									
+
 							</span>
-						
-					</h1>
-					<ul>
-						
-							
-						
-							
-								<li><a href="webtype/view8a2831b35f0c0d75015f0ffd944c001b/Pub1.html">EKCP开发版</a></li>
-							
-						
-							
-								<li><a href="webtype/view8a2831b35f0c0d75015f0ffe112c001c/Pub1.html">EKCP商业版</a></li>
-							
-						
-							
-						
-							
-						
-							
-								<li><a href="webtype/view8a2831b350e6b01f0150e6b9beb7008c/Pub1.html">WCP非商业版</a></li>
-							
-						
-							
-								<li><a href="webtype/view8a2831b350e6b01f0150e6b98ffa008b/Pub1.html">常见问题</a></li>
-							
-						
-							
-								<li><a href="webtype/view8a2831b350e6d06f0150e6d2d7dd0009/Pub1.html">文档下载</a></li>
-							
-						
-							
-						
-							
-								<li><a href="webtype/view8a2831b350e6b01f0150e6bbcca70093/Pub1.html">本站资讯</a></li>
-							
-						
-							
-						
-							
-						
-							
-								<li><a href="webtype/view8a2831b35c4c6712015c679e0942002b/Pub1.html">二次开发</a></li>
-							
-						
-							
-						
-							
-								<li><a href="webtype/view8a2831b35c6b986b015c6cd25c9b001e/Pub1.html">服务配置</a></li>
-							
-						
-							
-						
-							
-						
-							
-						
-							
-						
-					</ul>
-				</div>
-			
-		
-			
-		
-			
-		
-			
-				<div class="col-sm-3 docTypeBox">
-					<h1>
-						<a href="webtype/view402888304e2d75fe014e3d72e891000c/Pub1.html"> 编程 </a>
-						
-							<span style="color: #D9534F; font-weight: bold; font-size: 13px;">
+
+                        </h1>
+                        <ul>
+
+
+
+
+                            <li><a href="webtype/view8a2831b35f0c0d75015f0ffd944c001b/Pub1.html">EKCP开发版</a></li>
+
+
+
+                            <li><a href="webtype/view8a2831b35f0c0d75015f0ffe112c001c/Pub1.html">EKCP商业版</a></li>
+
+
+
+
+
+
+
+                            <li><a href="webtype/view8a2831b350e6b01f0150e6b9beb7008c/Pub1.html">WCP非商业版</a></li>
+
+
+
+                            <li><a href="webtype/view8a2831b350e6b01f0150e6b98ffa008b/Pub1.html">常见问题</a></li>
+
+
+
+                            <li><a href="webtype/view8a2831b350e6d06f0150e6d2d7dd0009/Pub1.html">文档下载</a></li>
+
+
+
+
+
+                            <li><a href="webtype/view8a2831b350e6b01f0150e6bbcca70093/Pub1.html">本站资讯</a></li>
+
+
+
+
+
+
+
+                            <li><a href="webtype/view8a2831b35c4c6712015c679e0942002b/Pub1.html">二次开发</a></li>
+
+
+
+
+
+                            <li><a href="webtype/view8a2831b35c6b986b015c6cd25c9b001e/Pub1.html">服务配置</a></li>
+
+
+
+
+
+
+
+
+
+
+                        </ul>
+                    </div>
+
+
+
+
+
+
+
+                    <div class="col-sm-3 docTypeBox">
+                        <h1>
+                            <a href="webtype/view402888304e2d75fe014e3d72e891000c/Pub1.html"> 编程 </a>
+
+                            <span style="color: #D9534F; font-weight: bold; font-size: 13px;">
 									<span class=" glyphicon glyphicon-bookmark"></span>&nbsp;158&nbsp;
-									
+
 										<span class="glyphicon glyphicon-question-sign"></span>&nbsp;2&nbsp;
-									
+
 							</span>
-						
-					</h1>
-					<ul>
-						
-							
-						
-							
-						
-							
-						
-							
-						
-							
-								<li><a href="webtype/view8a2831b35239b14301523f411c74005c/Pub1.html">web前端</a></li>
-							
-						
-							
-						
-							
-						
-							
-						
-							
-								<li><a href="webtype/view8a2831b35239b14301523f41b21a005e/Pub1.html">编程语言</a></li>
-							
-						
-							
-						
-							
-								<li><a href="webtype/view8a2831b35f0c0d75015f23d223fa007b/Pub1.html">jsp</a></li>
-							
-						
-							
-								<li><a href="webtype/view8a2831b350f469a70150fa2c76d300ce/Pub1.html">java</a></li>
-							
-						
-							
-						
-							
-								<li><a href="webtype/view8a2831b35239b14301523f41dbd8005f/Pub1.html">互联网</a></li>
-							
-						
-							
-						
-							
-								<li><a href="webtype/view8a2831b35239b14301523f42031f0060/Pub1.html">数据库</a></li>
-							
-						
-							
-								<li><a href="webtype/view8a2831b35239b14301523f4249450061/Pub1.html">系统运维</a></li>
-							
-						
-							
-								<li><a href="webtype/view8a2831b35239b14301523f4271f60062/Pub1.html">研发管理</a></li>
-							
-						
-							
-								<li><a href="webtype/view8a2831b356c725b30156c729c5c40000/Pub1.html">javascript</a></li>
-							
-						
-					</ul>
-				</div>
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-			
-		
-	</div>
+
+                        </h1>
+                        <ul>
+
+
+
+
+
+
+
+
+
+
+                            <li><a href="webtype/view8a2831b35239b14301523f411c74005c/Pub1.html">web前端</a></li>
+
+
+
+
+
+
+
+
+
+                            <li><a href="webtype/view8a2831b35239b14301523f41b21a005e/Pub1.html">编程语言</a></li>
+
+
+
+
+
+                            <li><a href="webtype/view8a2831b35f0c0d75015f23d223fa007b/Pub1.html">jsp</a></li>
+
+
+
+                            <li><a href="webtype/view8a2831b350f469a70150fa2c76d300ce/Pub1.html">java</a></li>
+
+
+
+
+
+                            <li><a href="webtype/view8a2831b35239b14301523f41dbd8005f/Pub1.html">互联网</a></li>
+
+
+
+
+
+                            <li><a href="webtype/view8a2831b35239b14301523f42031f0060/Pub1.html">数据库</a></li>
+
+
+
+                            <li><a href="webtype/view8a2831b35239b14301523f4249450061/Pub1.html">系统运维</a></li>
+
+
+
+                            <li><a href="webtype/view8a2831b35239b14301523f4271f60062/Pub1.html">研发管理</a></li>
+
+
+
+                            <li><a href="webtype/view8a2831b356c725b30156c729c5c40000/Pub1.html">javascript</a></li>
+
+
+                        </ul>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+
+
+            <hr>
+        </div>
+        <!-- <div class="col-sm-3 ">
+            <-jsp--:--include- page="../commons/includeHotKnowsMin.jsp"></-jsp--:--include->
+        </div> -->
+    </div>
 </div>
-
-
-
-
-					<hr>
-				</div>
-				<!-- <div class="col-sm-3 ">
-					<-jsp--:--include- page="../commons/includeHotKnowsMin.jsp"></-jsp--:--include->
-				</div> -->
-			</div>

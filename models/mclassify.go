@@ -1,6 +1,8 @@
 package models
 
 import (
+	"errors"
+
 	"github.com/astaxie/beego/orm"
 )
 
@@ -12,7 +14,8 @@ type Classifydata struct {
 	Createtime string `json:"createtime"`
 	Modifytime string `json:"modifytime"`
 	Creator    string `json:"creator"`
-	Reviser    string `json:"revisor"`
+	Reviser    string `json:"revisor"` //修改人
+	Status     int    `json:"status"`  //状态：0 正常/1 禁用
 }
 
 // TableName 获取对应数据库表名.
@@ -20,20 +23,68 @@ func (data *Classifydata) TableName() string {
 	return "classifydata"
 }
 
-func (data *Classifydata) InsertOrUpdate() error {
-	o := orm.NewOrm()
-	o.Using("default") // 默认使用 default，你可以指定为其他数据库
-	if data.Id > 0 {
-		_, err := o.Update(data)
-		return err
-	} else {
-		_, err := o.Insert(data)
-		return err
-	}
-
+func NewClassify() *Classifydata {
+	return &Classifydata{}
 }
 
-//分页查找分类.
+// Add 添加一个分类.
+func (data *Classifydata) Add() error {
+	o := orm.NewOrm()
+
+	if c, err := o.QueryTable(data.TableName()).Filter("Yjfl", data.Yjfl).Filter("Ejfl", data.Ejfl).Filter("Sjfl", data.Sjfl).Count(); err == nil && c > 0 {
+		return errors.New("已存在此分类")
+	}
+
+	_, err := o.Insert(data)
+
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+// Update 更新分类信息.
+func (data *Classifydata) Update(cols ...string) error {
+	o := orm.NewOrm()
+
+	if _, err := o.Update(data, cols...); err != nil {
+		return err
+	}
+	return nil
+}
+
+//Find 通过id查找分类
+func (data *Classifydata) Find(id int) (*Classifydata, error) {
+	o := orm.NewOrm()
+
+	data.Id = id
+	if err := o.Read(data); err != nil {
+		return data, err
+	}
+	return data, nil
+}
+
+//FindByConditions 根据一级分类、二级分类、三级分类查找分类信息.
+func (data *Classifydata) FindByConditions(pageIndex int, pageSize int, conditions map[string]string) ([]*Classifydata, int64, error) {
+	o := orm.NewOrm()
+	QueryResult := o.QueryTable(data.TableName())
+	var classifys []*Classifydata
+	for condition := range conditions {
+		QueryResult = QueryResult.Filter(condition, conditions[condition])
+	}
+	totalCount, err := QueryResult.Count()
+	if err != nil {
+		return classifys, 0, err
+	}
+	_, err = QueryResult.All(&classifys)
+	if err != nil {
+		return classifys, 0, err
+	}
+
+	return classifys, totalCount, err
+}
+
+//FindToPager 分页查找分类.
 func (data *Classifydata) FindToPager(pageIndex, pageSize int) ([]*Classifydata, int64, error) {
 	o := orm.NewOrm()
 
@@ -47,7 +98,7 @@ func (data *Classifydata) FindToPager(pageIndex, pageSize int) ([]*Classifydata,
 		return classifydatas, 0, err
 	}
 
-	_, err = o.QueryTable(data.TableName()).OrderBy("-id").Offset(offset).Limit(pageSize).All(&classifydatas)
+	_, err = o.QueryTable(data.TableName()).OrderBy("-Yjfl").Offset(offset).Limit(pageSize).All(&classifydatas)
 
 	if err != nil {
 		return classifydatas, 0, err
@@ -56,7 +107,7 @@ func (data *Classifydata) FindToPager(pageIndex, pageSize int) ([]*Classifydata,
 	return classifydatas, totalCount, nil
 }
 
-//删除一条分类.
+//Delete 删除一条分类.
 func (data *Classifydata) Delete(Id int) error {
 	o := orm.NewOrm()
 

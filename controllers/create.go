@@ -4,6 +4,8 @@ import (
 	"KnowledgeManage/models"
 	"strings"
 	"time"
+
+	"github.com/astaxie/beego"
 )
 
 type CreateController struct {
@@ -27,14 +29,48 @@ func (c *CreateController) Prepare() {
 
 //Get 知识创建页面
 func (c *CreateController) Get() {
+	c.Prepare()
+
 	yjfl, _, err := models.NewClassify().FindByClassify("", -1)
 	if err == nil {
 		c.Data["yjfl"] = yjfl
 	} else {
 		c.Data["yjfl"] = ""
 	}
-	c.Prepare()
 	c.Data["title"] = "知识创建"
+	c.Data["Model"] = ""
+	c.Data["Edit"] = "0"
+
+	c.Layout = "index.tpl"
+	c.TplName = "CreateKnowledge.html"
+}
+
+//Edit 知识修改页面
+func (c *CreateController) Edit() {
+	c.Prepare()
+	id, _ := c.GetInt(":id")
+
+	yjfl, _, err := models.NewClassify().FindByClassify("", -1)
+	if err == nil {
+		c.Data["yjfl"] = yjfl
+	} else {
+		c.Data["yjfl"] = ""
+	}
+	knowledgedata, err := models.NewKnowledge().Find(id)
+	if err != nil {
+		beego.Error(err.Error())
+		c.Abort("500")
+	}
+
+	c.Data["Model"] = knowledgedata
+	if id == 0 {
+		c.Data["title"] = "知识创建"
+		c.Data["Edit"] = "0"
+	} else {
+		c.Data["Edit"] = "1"
+		c.Data["title"] = "知识修改"
+
+	}
 	c.Layout = "index.tpl"
 	c.TplName = "CreateKnowledge.html"
 }

@@ -2,29 +2,44 @@
 </div>
 <div class="row">
     <div class="col-md-offset-4 column_box  hidden-xs">
-        <h1>都美dreamer-知识创建</h1>
+        <h1>都美dreamer-{{.title}}</h1>
     </div>
 </div>
 <div style="padding: 10px 0; color: #ccc"></div>
-<div class="row" >
+<div class="row">
     <div class="col-md-4">
         <select id="yjfl" class="wide small">
-                <option >一级分类</option>
+            {{if eq .Edit "1"}}
+            <option>{{.Model.Yjfl}}</option>
             {{range $index, $elem := .yjfl}}
-            <option >{{$elem}}</option>
-            {{end}}
+            <option>{{$elem}}</option>
+            {{end}}           
+            {{else}}
+            <option>一级分类</option>
+            {{range $index, $elem := .yjfl}}
+            <option>{{$elem}}</option>
+            {{end}} {{end}}
+
         </select>
     </div>
 
     <div class="col-md-4">
         <select id="ejfl" class="wide small">
-            <option >二级分类</option>
+            {{if eq .Edit "1"}}
+            <option>{{.Model.Ejfl}}</option>
+            {{else}}
+            <option>二级分类</option>
+            {{end}}
         </select>
     </div>
 
     <div class="col-md-4">
         <select id="sjfl" class="wide small">
-            <option >三级分类</option>
+            {{if eq .Edit "1"}}
+            <option>{{.Model.Sjfl}}</option>
+            {{else}}
+            <option>三级分类</option>
+            {{end}}
         </select>
     </div>
 </div>
@@ -33,14 +48,20 @@
     <div class="col-md-6">
         <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">标题</span>
-            <input type="text" id="Title" class="form-control" placeholder="标题" aria-describedby="basic-addon1">
+            {{if eq .Edit "1"}}
+            <input type="text" id="Title" class="form-control" placeholder="标题" aria-describedby="basic-addon1" value="{{.Model.Title}}"> 
+            <input type="hidden" id="change_id"  value="{{.Model.Id}}"> 
+            {{else}}
+            <input type="text" id="Title" class="form-control" placeholder="标题" aria-describedby="basic-addon1"> {{end}}
         </div>
     </div>
 
     <div class="col-md-6">
         <div class="input-group">
             <span class="input-group-addon" id="basic-addon2">关键字</span>
-            <input type="text" id="Keyword" class="form-control" placeholder="多个关键字使用英文逗号分割" aria-describedby="basic-addon2">
+            {{if eq .Edit "1"}}
+            <input type="text" id="Keyword" class="form-control" placeholder="多个关键字使用英文逗号分割" aria-describedby="basic-addon2" value="{{.Model.Keyword}}"> {{else}}
+            <input type="text" id="Keyword" class="form-control" placeholder="多个关键字使用英文逗号分割" aria-describedby="basic-addon2"> {{end}}
         </div>
     </div>
 </div>
@@ -54,7 +75,11 @@
 <div class="row">
     <div class="col-md-offset-3 column_box  hidden-xs">
         <div class="col-md-6">
-            <a class="btn btn-primary btn-lg"  role="button" id="input-data">提交知识</a>
+            {{if eq .Edit "1"}}
+            <a class="btn btn-primary btn-lg" role="button" id="edit-data">修改知识</a>
+            {{else}}
+            <a class="btn btn-primary btn-lg" role="button" id="input-data">提交知识</a>
+            {{end}}
         </div>
         <div class="col-md-6">
             <a class="btn btn-info btn-lg" role="button" id="preview-data">预览知识</a>
@@ -69,6 +94,16 @@
     $("#yjfl").niceSelect();
     $("#ejfl").niceSelect();
     $("#sjfl").niceSelect();  
+    
 </script>
 <script type="text/javascript" src="/static/js/wangEditor.min.js"></script>
 <script type="text/javascript" src="/static/js/create/create.js"></script>
+{{if eq .Edit "1"}}
+<script type="text/javascript">
+    $(function () {
+
+            editor.txt.html({{.Model.Contenthtml}})
+
+    })
+</script>
+{{end}}

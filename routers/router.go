@@ -19,6 +19,7 @@ func init() {
 	beego.Router("/ClassifyManage/edit", &controllers.ClassifyController{}, "post:EditClassify")
 
 	beego.Router("/CreateKnowledge", &controllers.CreateController{})
+	beego.Router("/EditKnowledge/:id", &controllers.CreateController{}, "*:Edit")
 	beego.Router("/CreateKnowledge/knowledges", &controllers.CreateController{}, "post:PageLoadJson")
 	beego.Router("/CreateKnowledge/add", &controllers.CreateController{}, "post:CreateKnowledge")
 	beego.Router("/CreateKnowledge/delete", &controllers.CreateController{}, "post:DeleteKnowledge")
@@ -26,9 +27,12 @@ func init() {
 	beego.Router("/CreateKnowledge/find", &controllers.CreateController{}, "post:FindClassify")
 
 	beego.Router("/BackupData", &controllers.BackupController{})
-	beego.Router("/content", &controllers.ContentController{})
+	beego.Router("/content/:id", &controllers.ContentController{}, "*:Index")
+
 	beego.Router("/login", &controllers.AccountController{})
 	beego.Router("/checklogin", &controllers.AccountController{}, "post:Login")
+	beego.Router("/upload", &controllers.UploadController{}, "post:UploadFile")
+
 	beego.Router("/manage", &controllers.ManageController{})
 	beego.Router("/manage/members", &controllers.ManageController{}, "post:PageLoadJson")
 	beego.Router("/manage/add", &controllers.ManageController{}, "post:CreateMember")

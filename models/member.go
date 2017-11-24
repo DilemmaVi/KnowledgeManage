@@ -145,6 +145,8 @@ func (m *Member) FindByConditions(pageIndex int, pageSize int, conditions map[st
 	o := orm.NewOrm()
 	data := o.QueryTable(m.TableName())
 	var members []*Member
+
+	offset := (pageIndex - 1) * pageSize
 	for condition := range conditions {
 		data = data.Filter(condition, conditions[condition])
 	}
@@ -152,7 +154,7 @@ func (m *Member) FindByConditions(pageIndex int, pageSize int, conditions map[st
 	if err != nil {
 		return members, 0, err
 	}
-	_, err = data.All(&members)
+	_, err = data.OrderBy("-id").Offset(offset).Limit(pageSize).All(&members)
 	if err != nil {
 		return members, 0, err
 	}

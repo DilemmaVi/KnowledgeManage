@@ -95,6 +95,7 @@ func (data *Classifydata) FindByConditions(pageIndex int, pageSize int, conditio
 	o := orm.NewOrm()
 	QueryResult := o.QueryTable(data.TableName())
 	var classifys []*Classifydata
+	offset := (pageIndex - 1) * pageSize
 	for condition := range conditions {
 		QueryResult = QueryResult.Filter(condition, conditions[condition])
 	}
@@ -102,7 +103,7 @@ func (data *Classifydata) FindByConditions(pageIndex int, pageSize int, conditio
 	if err != nil {
 		return classifys, 0, err
 	}
-	_, err = QueryResult.All(&classifys)
+	_, err = QueryResult.OrderBy("-id").Offset(offset).Limit(pageSize).All(&classifys)
 	if err != nil {
 		return classifys, 0, err
 	}

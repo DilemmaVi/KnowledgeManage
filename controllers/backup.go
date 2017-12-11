@@ -2,10 +2,15 @@ package controllers
 
 import (
 	"KnowledgeManage/models"
+	"archive/zip"
+	"io/ioutil"
+	"os"
 	"strconv"
+	"time"
+
+	"github.com/astaxie/beego"
 
 	"github.com/Luxurioust/excelize"
-	"github.com/astaxie/beego"
 )
 
 type BackupController struct {
@@ -32,6 +37,17 @@ func (c *BackupController) Get() {
 //Post 备份知识主程序
 func (c *BackupController) Post() {
 	c.Prepare()
+	dir, err := CompressZip()
+	if err == nil {
+		c.Ctx.Output.Download(dir)
+		return
+	}
+	beego.Error(err.Error())
+	c.Abort("500")
+
+}
+
+func CompressZip() (string, error) {
 	Knowledgedatas, err := models.NewKnowledge().GetAllKnowledgeData()
 	if err == nil {
 		Newxlsx := excelize.NewFile()
@@ -63,17 +79,42 @@ func (c *BackupController) Post() {
 			Newxlsx.SetCellValue("Sheet1", "K"+strconv.Itoa(index), knowledge.Reviser)
 		}
 		Newxlsx.SetActiveSheet(NewIndex)
-		err1 := Newxlsx.SaveAs("static/backup/result.xlsx")
-		if err1 == nil {
-			c.Ctx.Output.Download("static/backup/result.xlsx")
-			return
+		err = Newxlsx.SaveAs("static/backup/result.xlsx")
+		if err == nil {
+			f, _ := ioutil.ReadDir("static/img/")
+			dir := "static/backup/" + time.Now().Format("2006_01_02_15_04_05") + ".zip"
+			fzip, _ := os.Create(dir)
+			defer fzip.Close()
+			w := zip.NewWriter(fzip)
+			defer w.Close()
+			for _, file := range f {
+				fw, _ := w.Create("img/" + file.Name())
+				filecontent, _ := ioutil.ReadFile("static/img/" + file.Name())
+				_, err = fw.Write(filecontent)
+				if err != nil {
+					return "", err
+				}
+
+			}
+
+			fw, _ := w.Create("data.db")
+			filecontent, _ := ioutil.ReadFile("data.db")
+
+			_, err = fw.Write(filecontent)
+			if err != nil {
+				return "", err
+			}
+
+			fw, _ = w.Create("result.xlsx")
+			filecontent, _ = ioutil.ReadFile("static/backup/result.xlsx")
+			_, err = fw.Write(filecontent)
+			if err != nil {
+				return "", err
+			}
+
+			return dir, err
 		}
-		beego.Error(err1.Error())
-		c.Abort("500")
-
-	} else {
-		beego.Error(err.Error())
-		c.Abort("500")
+		return "", err
 	}
-
+	return "", err
 }

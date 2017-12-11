@@ -195,10 +195,10 @@ $(function () {
         //请求服务数据时所传参数
         function queryParams(params) {
             return {
-                //每页多少条数据
+                // //每页多少条数据
                 pageSize: params.limit,
-                //请求第几页
-                pageIndex: params.pageNumber,
+                // //请求第几页
+                pageIndex: (params.offset/params.limit)+1,
                 yjfl: $('#search_yjfl').val(),
                 ejfl: $('#search_ejfl').val(),
                 sjfl: $('#search_sjfl').val(),

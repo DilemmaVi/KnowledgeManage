@@ -218,7 +218,7 @@ $(function () {
                 //每页多少条数据
                 pageSize: params.limit,
                 //请求第几页
-                pageIndex: params.pageNumber,
+                pageIndex: (params.offset/params.limit)+1,
                 Name: $('#search_name').val(),
                 Tel: $('#search_tel').val(),
                 Email: $('#search_email').val(),

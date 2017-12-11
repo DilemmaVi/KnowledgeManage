@@ -27,8 +27,12 @@ func init() {
 			}
 		}
 	}
-	// beego.InsertFilter("/manage", beego.BeforeRouter, FilterUser)
-	// beego.InsertFilter("/manage/*", beego.BeforeRouter, FilterUser)
+	beego.InsertFilter("/manage", beego.BeforeRouter, FilterUser)
+	beego.InsertFilter("/manage/*", beego.BeforeRouter, FilterUser)
+	beego.InsertFilter("/list", beego.BeforeRouter, FilterUser)
+	beego.InsertFilter("/", beego.BeforeRouter, FilterUser)
+	beego.InsertFilter("/search", beego.BeforeRouter, FilterUser)
+	beego.InsertFilter("/EditKnowledge/*", beego.BeforeRouter, FilterUser)
 	beego.InsertFilter("/CreateKnowledge", beego.BeforeRouter, FilterUser)
 	beego.InsertFilter("/CreateKnowledge/*", beego.BeforeRouter, FilterUser)
 	beego.InsertFilter("/ClassifyManage", beego.BeforeRouter, FilterUser)

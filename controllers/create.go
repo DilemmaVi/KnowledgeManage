@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"KnowledgeManage/commands"
 	"KnowledgeManage/models"
 	"strings"
 	"time"
@@ -170,6 +171,7 @@ func (c *CreateController) CreateKnowledge() {
 	}
 
 	jsonresult.Msg = "ok"
+	go commands.IndexKnowledage()
 	c.Data["json"] = jsonresult
 	c.ServeJSON()
 	return
@@ -205,6 +207,7 @@ func (c *CreateController) EditKnowledge() {
 		return
 	}
 	jsonresult["msg"] = "ok"
+	go commands.IndexKnowledage()
 	c.Data["json"] = jsonresult
 	c.ServeJSON()
 	return
@@ -242,6 +245,7 @@ func (c *CreateController) DeleteKnowledge() {
 		return
 	}
 	jsonresult.Msg = "ok"
+	go commands.IndexKnowledage()
 	c.Data["json"] = jsonresult
 	c.ServeJSON()
 	return

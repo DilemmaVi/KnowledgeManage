@@ -7,6 +7,7 @@
         <div class="row column_box">
             <div class="col-sm-12">
                 <span class="glyphicon glyphicon-fire  column_title">&nbsp;知识分类</span>
+
             </div>
         </div>
         <div class="panel panel-default  side_column">
@@ -15,14 +16,14 @@
                     {{range $k, $v := .classify}} {{range $yjfl,$ejflList:=$v}}
                     <li>
                         <h5 class="showLableType">
-                            <a style="font-weight: bold; color: red;"> {{$yjfl}}</a>
+                            <a style="font-weight: bold; color: red;" onclick="query({{$yjfl}},'','')"> {{$yjfl}}</a>
                             <a class="glyphicon farm_tree_flag  farm_tree_h glyphicon-chevron-down" onclick="clickTreeFlag(this,1,'402881f14af310bc014af322996f0006')"></a>
                         </h5>
                         <ul style="display: none;">
                             {{range $ejfl,$sjflList:=$ejflList}}
                             <li>
                                 <h5 class="showLableType">
-                                    <a>{{$ejfl}}</a>
+                                    <a onclick="query({{$yjfl}},{{$ejfl}},'')">{{$ejfl}}</a>
 
                                     <a class="glyphicon farm_tree_flag  farm_tree_h glyphicon-chevron-down" onclick="clickTreeFlag(this,2,'8a2831b35c4c6712015c679e0942002b')"></a>
                                 </h5>
@@ -30,7 +31,7 @@
                                     {{range $key,$sjfl:=$sjflList}}
                                     <li>
                                         <h5 class="showLableType">
-                                            <a>{{$sjfl}}</a>
+                                            <a onclick="query({{$yjfl}},{{$ejfl}},{{$sjfl}})">{{$sjfl}}</a>
 
                                         </h5>
                                         <ul></ul>
@@ -51,8 +52,25 @@
         <div class="row column_box">
             <div class="col-sm-12">
 
-                <span class="glyphicon glyphicon-fire  column_title">&nbsp;知识列表
-                   
+                <span class="glyphicon glyphicon-fire  column_title">&nbsp;当前分类：
+
+                    {{if eq (.fenlei|len) 0}}
+{{else if eq (.fenlei|len) 1}}
+/
+<a style="color: #d9534f" href="#" class="active">{{.fenlei.yjfl}}</a>
+{{else if eq (.fenlei|len) 2}}
+/
+<a style="color: #d9534f" href="#" class="active">{{.fenlei.yjfl}}</a>
+/
+<a style="color: #d9534f" href="#" class="active">{{.fenlei.ejfl}}</a>
+{{else}}
+/
+<a style="color: #d9534f" href="#" class="active">{{.fenlei.yjfl}}</a>
+/
+<a style="color: #d9534f" href="#" class="active">{{.fenlei.ejfl}}</a>
+/
+<a style="color: #d9534f" href="#" class="active">{{.fenlei.sjfl}}</a>
+{{end}}
                 </span>
 
 
@@ -82,7 +100,7 @@
                         <div class="media">
                             <a class="pull-left hidden-xs hidden-sm" href="#" style="max-width: 200px; text-align: center;"
                                 title="{{$v.Title}}">
-                                <img class="img-circle side_unit_author_img" alt="{{$v.Creator}}" src="http://www.dreamer.cn/favicon.ico">
+                                <img class="img-circle side_unit_author_img" alt="{{$v.Creator}}" src="{{$.ico}}">
                                 <br>
                                 <span class="side_unit_info">{{$v.Creator}}</span>
                             </a>
@@ -106,7 +124,7 @@
 
                                     <div>
                                         <p class="doc_node_content">
-                                                {{substr $v.Content 0 50|str2html}}...
+                                                {{substr $v.Content 0 50}}...
 
                                         </p>
                                     </div>
@@ -137,3 +155,10 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+function query(yjfl,ejfl,sjfl){
+    window.location="/list/?yjfl="+yjfl+"&ejfl="+ejfl+"&sjfl="+sjfl+"&page=1"
+}
+
+</script>

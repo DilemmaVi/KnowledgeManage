@@ -13,7 +13,7 @@ type ListController struct {
 }
 
 func (c *ListController) Get() {
-
+	c.Prepare()
 	pageIndex, _ := c.GetInt("page", 1)
 	cOne := c.GetString("yjfl")
 	cTwo := c.GetString("ejfl")
@@ -77,6 +77,7 @@ func (c *ListController) Get() {
 		c.Data["PageHtml"] = ""
 	}
 
+	c.Data["fenlei"] = classifys
 	c.Data["TotalPages"] = int(math.Ceil(float64(totalCount) / float64(10)))
 	c.Data["knowledgedatas"] = knowledgedatas
 	c.Data["classify"] = result

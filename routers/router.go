@@ -30,6 +30,7 @@ func init() {
 	beego.Router("/content/:id", &controllers.ContentController{}, "*:Index")
 
 	beego.Router("/login", &controllers.AccountController{})
+	beego.Router("/logout", &controllers.AccountController{}, "*:Logout")
 	beego.Router("/checklogin", &controllers.AccountController{}, "post:Login")
 	beego.Router("/upload", &controllers.UploadController{}, "post:UploadFile")
 

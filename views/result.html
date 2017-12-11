@@ -1,3 +1,4 @@
+<div style="padding: 40px 0; color: #ccc"></div>
 <div class="containerbox" style="min-height: 333px;">
 	<div class="container ">
 		<div class="row column_box">
@@ -9,7 +10,7 @@
 			</div>
 			<div class="col-lg-6">
 				<div class="row">
-					<div class="col-sm-12 column_box">
+					<div class="col-sm-12">
 
 
 
@@ -17,28 +18,27 @@
 
 						<script src="/static/css/autocomplete/completer.min.js"></script>
 						<link rel="stylesheet" href="/static/css/autocomplete/completer.css">
-						<div class="row">
+						
 							<div class="col-sm-12 ">
-								<form action="websearch/PubDo.do" id="websearchpubdoId" method="post">
+								<form action="/search"  method="post">
 									<div class="input-group">
-										<input type="text" class="form-control" name="word" value="怎么用lucene" id="searchInput" placeholder="请输入关键字..." autocomplete="off">
-										<span class="input-group-btn">
-											<button class="btn btn-info" type="submit">
-												搜索
-											</button>
-										</span>
-									</div>
+											<input type="text" class="form-control" name="query" value="{{.query}}" id="query" placeholder="请输入关键字..." autocomplete="off"> <span class="input-group-btn">
+												<button class="btn btn-info" type="submit">
+													搜索
+												</button> 
+											</span>
+										</div>
 								</form>
 							</div>
-						</div>
-						<div class="row">
+						
+
 							<div class="col-sm-12 ">
 
 								<a class="hotWordsearch">
-									<span class="label label-danger" style="cursor: pointer;">做美妆行业最好用的知识库系统</span>
+									<span class="label label-danger" style="cursor: pointer;">{{.Solgan}}</span>
 								</a>
 
-							</div>
+						
 						</div>
 					</div>
 				</div>
@@ -60,13 +60,13 @@
 	 *         TYPENAME -->
 						<div class="row column_box">
 							<div class="col-sm-12">
-								<span class="glyphicon glyphicon-fire  column_title">&nbsp;检索到78条结果,用时78毫秒
+								<span class="glyphicon glyphicon-fire  column_title">&nbsp;检索到{{.count}}条结果,用时{{.elapsed}}毫秒
 								</span>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-12">
-
+								{{range $k, $v := .docs}}
 								<div class="col-sm-12">
 									<hr class="hr_split">
 								</div>
@@ -77,435 +77,29 @@
 												<div class="doc_node_title_box">
 
 
-													<a class="doc_node_title_min" href="webquest/fqa/Pub8a2831b35af5dd3b015b6ac27c68016b.html">
-														<span class="glyphicon glyphicon-question-sign"></span> 《人民的名义》全集遭到泄露是
-														<font color="red">怎么</font>回事？</a>
+													<a class="doc_node_title_min" href="/content/{{$v.Id}}">
+														<span class="glyphicon glyphicon-question-sign"></span> {{str2html $v.Title}}
 
 
 												</div>
 												<div class="doc_node_content_box">
 													<p class="doc_node_content">
-
+														{{str2html $v.Content}}...
 
 													</p>
 												</div>
 												<div class="side_unit_info side_unit_info_left_box">
-													<a href="webuser/PubHome.do?userid=40288b854a329988014a329a12f30002" title="系统管理员">
-														<span title="" class="side_unit_info">系统管理员</span>
+													<a href="#" title="{{$v.Creator}}">
+														<span title="" class="side_unit_info">{{$v.Creator}}</span>
 													</a>
 
-
-													<a href="webtype/view402888304e2d75fe014e3d72e891000c/Pub1.html">编程</a>
-
-													2017-04-14 12:39
+													{{$v.Yjfl}}-{{$v.Ejfl}}-{{$v.Sjfl}}&nbsp;&nbsp;&nbsp;{{$v.Createtime}}
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-
-								<div class="col-sm-12">
-									<hr class="hr_split">
-								</div>
-								<div class="col-sm-12 doc_node">
-									<div class="media">
-										<div class="media-body">
-											<div style="margin-left: 4px;" class="pull-left">
-												<div class="doc_node_title_box">
-
-
-													<a class="doc_node_title_min" href="webquest/fqa/Pub8a2831b35af5dd3b015b6ac6e50c016d.html">
-														<span class="glyphicon glyphicon-question-sign"></span> 傅园慧破100米仰泳全国纪录是
-														<font color="red">怎么</font>回事？</a>
-
-
-												</div>
-												<div class="doc_node_content_box">
-													<p class="doc_node_content">
-
-
-														<span class="label label-success">完成</span>
-
-														在4月12日，浙江选手傅园慧在女子100米仰泳决赛后庆祝。当日，在山东青岛进行的2017年全国游泳冠军赛暨第十三届全运会预选赛女子100米仰泳决赛中，浙江选手傅园慧以58秒72的成绩夺冠，并打破由她自</p>
-												</div>
-												<div class="side_unit_info side_unit_info_left_box">
-													<a href="webuser/PubHome.do?userid=40288b854a329988014a329a12f30002" title="系统管理员">
-														<span title="" class="side_unit_info">系统管理员</span>
-													</a>
-
-
-													<a href="webtype/view402888304e2d75fe014e3d72e891000c/Pub1.html">编程</a>
-
-													2017-04-14 12:44
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-sm-12">
-									<hr class="hr_split">
-								</div>
-								<div class="col-sm-12 doc_node">
-									<div class="media">
-										<div class="media-body">
-											<div style="margin-left: 4px;" class="pull-left">
-												<div class="doc_node_title_box">
-
-													<a class="doc_node_title_min" target="_self" href="webdoc/view/PubFile8a2831b3543198880154319c524e0001.html">
-														<span class="glyphicon glyphicon-paperclip"></span> WCP开源的知识管理系统知识库系统安装.doc</a>
-
-
-
-												</div>
-												<div class="doc_node_content_box">
-													<p class="doc_node_content">
-														采用springMVC、spring、hibernate框架实现主要架构功能，由
-														<font color="red">lucene</font>提供全文检索功能，并使用了其他若干主流开源项目。数据库管理系统默认使用mysql。可以部署在tomcat等</p>
-												</div>
-												<div class="side_unit_info side_unit_info_left_box">
-													<a href="webuser/PubHome.do?userid=40288b854a329988014a329a12f30002" title="系统管理员">
-														<span title="" class="side_unit_info">系统管理员</span>
-													</a>
-
-													<a href="webdoc/view/Pub8a2831b354319888015431a111bb0006.html">知识来源</a>
-
-
-													2016-04-20 11:05
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-sm-12">
-									<hr class="hr_split">
-								</div>
-								<div class="col-sm-12 doc_node">
-									<div class="media">
-										<div class="media-body">
-											<div style="margin-left: 4px;" class="pull-left">
-												<div class="doc_node_title_box">
-
-													<a class="doc_node_title_min" target="_self" href="webdoc/view/PubFile8a2831b3573c10d001573c19080d0001.html">
-														<span class="glyphicon glyphicon-paperclip"></span> WCP产品部署手册V3.2.1.docx</a>
-
-
-
-												</div>
-												<div class="doc_node_content_box">
-													<p class="doc_node_content">
-														：SpirngMVC4：mvc框架Spring4Hibernate4：ORM框架
-														<font color="red">Lucene</font>3.6：全文检索Jsoup1.7：HTML、XML解析前台主要开源框架：Bootstrap：前台页面框架easyUI：控制台页面</p>
-												</div>
-												<div class="side_unit_info side_unit_info_left_box">
-													<a href="webuser/PubHome.do?userid=40288b854a329988014a329a12f30002" title="系统管理员">
-														<span title="" class="side_unit_info">系统管理员</span>
-													</a>
-
-													<a href="webdoc/view/Pub8a2831b3572e7bc501573b5900270006.html">知识来源</a>
-
-
-													2016-09-18 11:31
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-sm-12">
-									<hr class="hr_split">
-								</div>
-								<div class="col-sm-12 doc_node">
-									<div class="media">
-										<div class="media-body">
-											<div style="margin-left: 4px;" class="pull-left">
-												<div class="doc_node_title_box">
-
-
-													<a class="doc_node_title_min" href="webquest/fqa/Pub8a2831b35a41f8c9015a4211c4d60001.html">
-														<span class="glyphicon glyphicon-question-sign"></span> 家长应该如何处理孩子的压岁钱更合适？</a>
-
-
-												</div>
-												<div class="doc_node_content_box">
-													<p class="doc_node_content">
-
-
-														每年春节，孩子都会收到厚厚的压岁钱，这些压岁钱
-														<font color="red">怎么</font>处理合适呢？是交给自己的孩子保管好，还是家长帮忙存起来？</p>
-												</div>
-												<div class="side_unit_info side_unit_info_left_box">
-													<a href="webuser/PubHome.do?userid=40288b854a329988014a329a12f30002" title="系统管理员">
-														<span title="" class="side_unit_info">系统管理员</span>
-													</a>
-
-
-													<a href="webtype/view8a2831b350e6b01f0150e6b98ffa008b/Pub1.html">EKCP/常见问题</a>
-
-													2017-02-15 21:59
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-sm-12">
-									<hr class="hr_split">
-								</div>
-								<div class="col-sm-12 doc_node">
-									<div class="media">
-										<div class="media-body">
-											<div style="margin-left: 4px;" class="pull-left">
-												<div class="doc_node_title_box">
-
-
-
-													<a class="doc_node_title_min" target="_self" href="webdoc/view/Pub402888ac56b5376a0156b54537a7001f.html">
-
-
-
-
-														<span class="glyphicon glyphicon-book"></span>
-
-														javascript数字验证的实例代码(推荐)
-													</a>
-
-												</div>
-												<div class="doc_node_content_box">
-													<p class="doc_node_content">
-														现在有一个需求如下图：产品经理说CardNumber只能让输入数字（中间的空格是格式自加的，也是
-														<font color="red">用</font>js实现的），有时候我脑海中出现了个声音，啥玩意，加个type=number不就行了，事实发现图样图</p>
-												</div>
-												<div class="side_unit_info side_unit_info_left_box">
-													<a href="webuser/PubHome.do?userid=40288b854a329988014a329a12f30002" title="系统管理员">
-														<span title="" class="side_unit_info">系统管理员</span>
-													</a>
-
-
-													<a href="webtype/view8a2831b356c725b30156c729c5c40000/Pub1.html">编程/javascript</a>
-
-													2016-08-23 10:40
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-sm-12">
-									<hr class="hr_split">
-								</div>
-								<div class="col-sm-12 doc_node">
-									<div class="media">
-										<div class="media-body">
-											<div style="margin-left: 4px;" class="pull-left">
-												<div class="doc_node_title_box">
-
-
-
-													<a class="doc_node_title_min" target="_self" href="webdoc/view/Pub8a2831b357f1d4f30158a5f65dd400f3.html">
-
-
-
-
-														<span class="glyphicon glyphicon-book"></span>
-
-														WCP知识管理系统v3.4.0(免费版)
-													</a>
-
-												</div>
-												<div class="doc_node_content_box">
-													<p class="doc_node_content">
-														架构功能，由
-														<font color="red">lucene</font>提供全文检索功能，并使用了其他若干主流开源项目。数据库管理系统默认使用mysql。可以部署在tomcat等主流中间件服务器上。权利与义务尊敬的使用者，如果您决定要免费的使用本系统</p>
-												</div>
-												<div class="side_unit_info side_unit_info_left_box">
-													<a href="webuser/PubHome.do?userid=40288b854a329988014a329a12f30002" title="系统管理员">
-														<span title="" class="side_unit_info">系统管理员</span>
-													</a>
-
-
-													<a href="webtype/view8a2831b350e6b01f0150e6bbcca70093/Pub1.html">EKCP/本站资讯</a>
-
-													2016-11-27 21:25
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-sm-12">
-									<hr class="hr_split">
-								</div>
-								<div class="col-sm-12 doc_node">
-									<div class="media">
-										<div class="media-body">
-											<div style="margin-left: 4px;" class="pull-left">
-												<div class="doc_node_title_box">
-
-
-
-													<a class="doc_node_title_min" target="_self" href="webdoc/view/Pub8a2831b350e6b01f0150e6c1ad5a009f.html">
-
-
-
-
-														<span class="glyphicon glyphicon-book"></span>
-
-														WCP知识管理系统v3.2.0(开源版)
-													</a>
-
-												</div>
-												<div class="doc_node_content_box">
-													<p class="doc_node_content">
-														、知识推送、全文检索、在线office文档预览到知识评价等功能。WCP采用java、js语言进行开发，使用了springMVC、spring、hibernate等框架实现主要架构功能，由
-														<font color="red">lucene</font>提供</p>
-												</div>
-												<div class="side_unit_info side_unit_info_left_box">
-													<a href="webuser/PubHome.do?userid=40288b854a329988014a329a12f30002" title="系统管理员">
-														<span title="" class="side_unit_info">系统管理员</span>
-													</a>
-
-
-													<a href="webtype/view8a2831b350e6b01f0150e6bbcca70093/Pub1.html">本站资讯</a>
-
-													2015-11-20 18:52
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-sm-12">
-									<hr class="hr_split">
-								</div>
-								<div class="col-sm-12 doc_node">
-									<div class="media">
-										<div class="media-body">
-											<div style="margin-left: 4px;" class="pull-left">
-												<div class="doc_node_title_box">
-
-
-
-													<a class="doc_node_title_min" target="_self" href="webdoc/view/Pub402888ac56b5376a0156b56e0fa109a3.html">
-
-
-
-
-														<span class="glyphicon glyphicon-book"></span>
-
-														JavaScript replace new RegExp使用介绍
-													</a>
-
-												</div>
-												<div class="doc_node_content_box">
-													<p class="doc_node_content">
-														关键字会高亮改变颜色显示出来？？这是
-														<font color="red">怎么</font>实现的呢？？其实我们可以
-														<font color="red">用</font>正则表达式来实现，具体
-														<font color="red">怎么</font>样实现呢？简单的原理请看下面的代码&lt;scriptlanguage="</p>
-												</div>
-												<div class="side_unit_info side_unit_info_left_box">
-													<a href="webuser/PubHome.do?userid=40288b854a329988014a329a12f30002" title="系统管理员">
-														<span title="" class="side_unit_info">系统管理员</span>
-													</a>
-
-
-													<a href="webtype/view8a2831b356c725b30156c729c5c40000/Pub1.html">编程/javascript</a>
-
-													2016-08-23 11:25
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-sm-12">
-									<hr class="hr_split">
-								</div>
-								<div class="col-sm-12 doc_node">
-									<div class="media">
-										<div class="media-body">
-											<div style="margin-left: 4px;" class="pull-left">
-												<div class="doc_node_title_box">
-
-
-
-													<a class="doc_node_title_min" target="_self" href="webdoc/view/Pub8a2831b35f3f6d73015f7305fdb31662.html">
-
-
-
-
-														<span class="glyphicon glyphicon-book"></span>
-
-														关于openoffice/libreoffice+swftools+jodconverter+flexpaper预览文件的一些问题 - CSDN博客
-													</a>
-
-												</div>
-												<div class="doc_node_content_box">
-													<p class="doc_node_content">
-														方式,所以只能找
-														<font color="red">怎么</font>
-														<font color="red">用</font>流分页加载了.(废话好多,哈哈)网上没合适的答案,自己摸索出flexpaper流的方式分页加载方法具体可以这么写SWFFile:'{/doc_layout</p>
-												</div>
-												<div class="side_unit_info side_unit_info_left_box">
-													<a href="webuser/PubHome.do?userid=40288b854a329988014a329a12f30002" title="系统管理员">
-														<span title="" class="side_unit_info">系统管理员</span>
-													</a>
-
-
-													<a href="webtype/view8a2831b350f469a70150fa2c76d300ce/Pub1.html">java</a>
-
-													2017-10-31 23:21
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-xs-12">
-								<ul class="pagination pagination-sm">
-
-
-									<li class="active">
-										<a>1 </a>
-									</li>
-
-
-
-
-
-									<li>
-										<a onclick="luceneSearchGo(2)">2</a>
-									</li>
-
-
-
-
-									<li>
-										<a onclick="luceneSearchGo(3)">3</a>
-									</li>
-
-
-
-
-									<li>
-										<a onclick="luceneSearchGo(4)">4</a>
-									</li>
-
-
-
-
-									<li>
-										<a onclick="luceneSearchGo(5)">5</a>
-									</li>
-
-
-								</ul>
+								{{end}}			
 							</div>
 						</div>
 
@@ -527,14 +121,14 @@
 							{{range $k, $v := .classify}} {{range $yjfl,$ejflList:=$v}}
 							<li>
 								<h5 class="showLableType">
-									<a style="font-weight: bold; color: red;"> {{$yjfl}}</a>
+									<a style="font-weight: bold; color: red;" onclick="query({{$yjfl}},'','')"> {{$yjfl}}</a>
 									<a class="glyphicon farm_tree_flag  farm_tree_h glyphicon-chevron-down" onclick="clickTreeFlag(this,1,'402881f14af310bc014af322996f0006')"></a>
 								</h5>
 								<ul style="display: none;">
 									{{range $ejfl,$sjflList:=$ejflList}}
 									<li>
 										<h5 class="showLableType">
-											<a>{{$ejfl}}</a>
+											<a onclick="query({{$yjfl}},{{$ejfl}},'')">{{$ejfl}}</a>
 
 											<a class="glyphicon farm_tree_flag  farm_tree_h glyphicon-chevron-down" onclick="clickTreeFlag(this,2,'8a2831b35c4c6712015c679e0942002b')"></a>
 										</h5>
@@ -542,7 +136,7 @@
 											{{range $key,$sjfl:=$sjflList}}
 											<li>
 												<h5 class="showLableType">
-													<a>{{$sjfl}}</a>
+													<a onclick="query({{$yjfl}},{{$ejfl}},{{$sjfl}})">{{$sjfl}}</a>
 
 												</h5>
 												<ul></ul>
@@ -582,6 +176,9 @@
 </div>
 </div>
 
-
-
->
+<script type="text/javascript">
+    function query(yjfl,ejfl,sjfl){
+        window.location="/list/?yjfl="+yjfl+"&ejfl="+ejfl+"&sjfl="+sjfl+"&page=1"
+    }
+    
+    </script>

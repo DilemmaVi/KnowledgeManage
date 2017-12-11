@@ -2,7 +2,7 @@
 </div>
 <div class="row">
     <div class="col-md-offset-4 column_box  hidden-xs">
-        <h1>都美dreamer-{{.title}}</h1>
+        <h1>{{.Company}}-{{.title}}</h1>
     </div>
 </div>
 <div style="padding: 10px 0; color: #ccc"></div>
@@ -82,7 +82,11 @@
             {{end}}
         </div>
         <div class="col-md-6">
+                {{if eq .Edit "1"}}
+            <a class="btn btn-danger btn-lg" role="button" id="delete-data" data-id="{{.Model.Id}}">删除知识</a>
+            {{else}}
             <a class="btn btn-info btn-lg" role="button" id="preview-data">预览知识</a>
+            {{end}}
         </div>
     </div>
 

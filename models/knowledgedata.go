@@ -43,6 +43,7 @@ func (data *Knowledgedata) Add() error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -53,6 +54,7 @@ func (data *Knowledgedata) Update(cols ...string) error {
 	if _, err := o.Update(data, cols...); err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -65,6 +67,16 @@ func (data *Knowledgedata) Find(id int) (*Knowledgedata, error) {
 		return data, err
 	}
 	return data, nil
+}
+
+//GetAllKnowledgeData 获取所有知识
+func (data Knowledgedata) GetAllKnowledgeData() ([]Knowledgedata, error) {
+	o := orm.NewOrm()
+	var knowledgedatas []Knowledgedata
+	if _, err := o.QueryTable(data.TableName()).All(&knowledgedatas); err != nil {
+		return knowledgedatas, err
+	}
+	return knowledgedatas, nil
 }
 
 //FindByConditions 根据一级分类、二级分类、三级分类查找知识.
@@ -131,5 +143,6 @@ func (data *Knowledgedata) Delete(Id int) error {
 		o.Rollback()
 		return err
 	}
+
 	return nil
 }

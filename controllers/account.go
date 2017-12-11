@@ -27,7 +27,7 @@ func (c *AccountController) Get() {
 		if err := utils.Decode(cookie, &remember); err == nil {
 			if member, err := models.NewMember().Find(remember.MemberId); err == nil {
 				c.SetMember(*member)
-				c.Redirect(beego.URLFor("ListController.Get"), 302)
+				c.Redirect(beego.URLFor("SearchController.Get"), 302)
 				c.StopRun()
 			}
 		}
@@ -80,4 +80,13 @@ func (c *AccountController) Login() {
 		c.ServeJSON()
 		return
 	}
+}
+
+// Logout 退出登录.
+func (c *AccountController) Logout() {
+	c.SetMember(models.Member{})
+
+	c.SetSecureCookie(conf.GetAppKey(), "login", "", -86400)
+
+	c.Redirect(beego.URLFor("AccountController.Get"), 302)
 }

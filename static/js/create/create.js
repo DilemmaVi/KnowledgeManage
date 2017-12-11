@@ -145,11 +145,15 @@ $(function () {
 
                 success: function (result) {
                     if (result.msg == "ok") {
-                        swal(
-                            '恭喜',
-                            '提交成功',
-                            'success'
-                        )
+                        swal({
+                            title: '恭喜!',
+                            text: '大吉大利,提交程序!',
+                            type: 'success',
+                            timer: 1000
+                        }).then(function(){
+                            window.location="/CreateKnowledge"
+
+                        })
                     } else {
                         swal(
                             '出错了',
@@ -169,6 +173,52 @@ $(function () {
             });
 
         });
+
+        $('#delete-data').click(function (e) {
+            var id = $('#delete-data').attr('data-id')
+            swal({
+                title: '确定删除吗?',
+                text: "删除后数据将无法恢复!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '确定删除',
+                cancelButtonText: "取消"
+            }).then(function (isConfirm) {
+                if (isConfirm) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/CreateKnowledge/delete",
+                        data: { "id": id },
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.msg == "ok") {
+                                swal({
+                                    title: '恭喜!',
+                                    text: '大吉大利,删除成功!',
+                                    type: 'success',
+                                    timer: 1000
+                                }).then(function(){
+                                    window.location="/CreateKnowledge"
+                                })
+
+                               
+                            } else {
+                                swal(
+                                    '删除失败!',
+                                    data.msg,
+                                    'error'
+                                )
+                            }
+                        }
+                    });
+
+                }
+            })
+
+        })
+
 
 
         $("#yjfl").change(function () {

@@ -22,9 +22,9 @@ type MembersJsonData struct {
 func (c *ManageController) Prepare() {
 	c.BaseController.Prepare()
 
-	// if !c.Member.IsAdministrator() {
-	// 	c.Abort("403")
-	// }
+	if !c.Member.IsAdministrator() {
+		c.Abort("403")
+	}
 }
 
 //Get 管理后台页面
@@ -126,12 +126,12 @@ func (c *ManageController) CreateMember() {
 	role, _ := c.GetInt("role", 1)
 	status, _ := c.GetInt("status", 0)
 
-	if ok, err := regexp.MatchString(conf.RegexpAccount, account); account == "" || !ok || err != nil {
-		jsonresult.Msg = "账号只能由英文字母数字组成，且在3-50个字符" + account
-		c.Data["json"] = jsonresult
-		c.ServeJSON()
-		return
-	}
+	// if ok, err := regexp.MatchString(conf.RegexpAccount, account); account == "" || !ok || err != nil {
+	// 	jsonresult.Msg = "账号只能由英文字母数字组成，且在3-50个字符" + account
+	// 	c.Data["json"] = jsonresult
+	// 	c.ServeJSON()
+	// 	return
+	// }
 
 	if ok, err := regexp.MatchString(conf.RegexpPhone, phone); !ok || err != nil || phone == "" {
 		jsonresult.Msg = "手机号码格式不正确"

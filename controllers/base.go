@@ -15,11 +15,15 @@ type BaseController struct {
 // Prepare 预处理.
 // 控制器预处理程序
 func (c *BaseController) Prepare() {
-	c.Data["Member"] = ""
-
+	c.Data["Member"] = models.Member{}
+	c.Data["Company"] = beego.AppConfig.String("Company")
+	c.Data["CompanyEN"] = beego.AppConfig.String("CompanyEN")
+	c.Data["Solgan"] = beego.AppConfig.String("Solgan")
+	c.Data["ico"] = beego.AppConfig.String("ico")
+	c.Data["Copyright"] = beego.AppConfig.String("Copyright")
 	if member, ok := c.GetSession(conf.LoginSessionName).(models.Member); ok && member.Id > 0 {
 		c.Member = &member
-		c.Data["Member"] = c.Member.Name
+		c.Data["Member"] = c.Member
 	}
 	c.Data["BaseUrl"] = c.Ctx.Input.Scheme() + "://" + c.Ctx.Request.Host
 }
